@@ -1,25 +1,31 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Titolo:</strong>
-  <%= @book.titolo %>
-</p>
-
-<p>
-  <strong>Autore:</strong>
-  <%= @book.autore %>
-</p>
-
-<p>
-  <strong>Prezzo:</strong>
-  <%= @book.prezzo %>
-</p>
-
-<p>
-  <strong>Desciption:</strong>
-  <%= @book.desciption %>
-</p>
-
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %> |
-<%= link_to 'Destroy', book_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+<div class="container">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong><%= notice %></strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+  <h1 class="text-center mt-4"><%= @book.titolo %></h1>
+  <div class="container">
+      <div class="row justify-content-md-center">
+        <div class="col-8 mt-4">
+          <div class="card text-center shadow mb-5 bg-body rounded">
+            <div class="card-header fst-italic">
+              By Alessandro and Augustin
+            </div>
+            <div class="card-body">
+              <h6 class="card-title"><%= @book.autore %></h6>
+              <p class="card-text"><%= @book.desciption %></p>
+              <p class="card-text"><%= @book.prezzo %></p>
+              <a href="#" class="btn btn-outline-primary">Aggiungi al carrello</a>
+              <%= link_to 'Modifica', edit_book_path(@book), class: "btn btn-outline-warning" %>
+              <%= link_to 'Cancella', book_path(@book), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
+            </div>
+            <div class="card-footer text-muted">
+              <small>Pubblicato <%= time_ago_in_words(@book.created_at) %> fa,
+                Modificato <%= time_ago_in_words(@book.updated_at) %> fa
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
