@@ -1,28 +1,31 @@
 <nav class="navbar navbar-expand-lg navbar-primary bg-primary">
-      <div class="container-fluid">
-        <%= link_to "YouStud", root_path, class: "navbar-brand", id: "logo" %>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Libri
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <%= link_to 'Nuovo libro', new_book_path, class: "dropdown-item" %>
-                <%= link_to 'Lista dei Libri', books_path, class: "dropdown-item" %>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Esci</a>
-            </li>
-          </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Ricerca" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Cerca</button>
-          </form>
-        </div>
+  <div class="container-fluid">
+    <%= link_to "YouStud", root_path, class: "navbar-brand", id: "logo" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <% if user_signed_in? %>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Libri
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to 'Nuovo libro', new_book_path, class: "dropdown-item" %>
+              <%= link_to 'Lista dei Libri', books_path, class: "dropdown-item" %>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Esci', destroy_user_session_path: :delete, class: "nav-link" %>
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Esci</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Ricerca" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Cerca</button>
+        </form>
       </div>
-    </nav>
+    <% end %>
+  </div>
+</nav>
